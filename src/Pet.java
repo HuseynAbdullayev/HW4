@@ -2,6 +2,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 @Getter
 @Setter
@@ -11,6 +12,13 @@ public class Pet {
     private int age;
     private int trickLevel;
     private String[] habits;
+
+    static{
+        System.out.println("Pet Class is Loaded.");
+    }
+    {
+        System.out.println("New object was created.");
+    }
 
     public Pet(String species, String nickname){
         this.species = species;
@@ -48,5 +56,24 @@ public class Pet {
                 + "TrickLevel: " + trickLevel + "\n"
                 +"Habits: " + Arrays.toString(habits)
         );
+    }
+
+    @Override
+    public boolean equals(Object o) {
+
+        if (o == this) return true;
+        if (!(o instanceof Pet pet)) {
+            return false;
+        }
+        return Objects.equals(species, pet.species) &&
+                Objects.equals(nickname, pet.nickname) &&
+                Objects.equals(age, pet.age) &&
+                Objects.equals(trickLevel, pet.trickLevel) &&
+                Arrays.equals(habits, pet.habits);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(species, nickname, age, trickLevel, Arrays.hashCode(habits));
     }
 }
