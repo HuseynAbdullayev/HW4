@@ -7,7 +7,7 @@ import java.util.Objects;
 @Getter
 @Setter
 public class Pet {
-    private String species;
+    private Species species;
     private String nickname;
     private int age;
     private int trickLevel;
@@ -20,12 +20,12 @@ public class Pet {
         System.out.println("New object was created.");
     }
 
-    public Pet(String species, String nickname){
+    public Pet(Species species, String nickname){
         this.species = species;
         this.nickname = nickname;
     }
 
-    public Pet(String species, String nickname, int age, int trickLevel, String[] habits){
+    public Pet(Species species, String nickname, int age, int trickLevel, String[] habits){
         this.species = species;
         this.nickname = nickname;
         this.age = age;
@@ -49,13 +49,17 @@ public class Pet {
         System.out.println("I need to cover it up.");
     }
 
-    public void ToString(){
-        System.out.println("About the " + species);
-        System.out.println("Nickname: " + nickname + "\n"
+    @Override
+    public String toString(){
+        StringBuilder aboutPet;
+        aboutPet = new StringBuilder(
+                "About the " + species + "\n"
+                + "Nickname: " + nickname + "\n"
                 + "Age: " + age + "\n"
                 + "TrickLevel: " + trickLevel + "\n"
                 +"Habits: " + Arrays.toString(habits)
         );
+        return aboutPet.toString();
     }
 
     @Override

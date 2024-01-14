@@ -30,20 +30,20 @@ public class Human{
         this.schedule = schedule;
     }
 
-    public void Greet(){
+    public void greet(){
         System.out.println("Hello my friend.");
     }
 
-    public void Describe(){
+    public void describe(){
         System.out.println("My name is " + name);
     }
 
-    public void Feed(){
+    public void feed(){
         System.out.println("I must feed my pet");
     }
 
-
-    public void ToString(){
+    @Override
+    public String toString(){
         System.out.println("About the " + name);
         System.out.println("Name: " + name + "\n"
                 + "Surname: " + surname + "\n"
@@ -51,6 +51,7 @@ public class Human{
                 + "Iq: " + iq + "\n"
                 + "Schedule" + Arrays.deepToString(schedule)
                 );
+        return null;
     }
 
 
@@ -71,4 +72,5 @@ public class Human{
     public int hashCode() {
         return Objects.hash(name, surname, year);
     }
+
 }

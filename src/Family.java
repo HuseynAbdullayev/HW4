@@ -31,7 +31,7 @@ public class Family {
 
     public void addChild(Human child){
         if(children != null) {
-            List<Human> childrenlist = new ArrayList<>(Arrays.stream(children).toList());
+            childrenlist = new ArrayList<>(Arrays.stream(children).toList());
             childrenlist.add(child);
             children = childrenlist.toArray(children);
         }
@@ -60,24 +60,27 @@ public class Family {
         }
     }
 
-    public void ToString(){
-        System.out.println("About the family");
-        System.out.println(
-                "Father: " + father.getName() + " " + father.getSurname() + "\n"
+    @Override
+    public String toString(){
+        StringBuilder aboutFamily;
+        aboutFamily = new StringBuilder("About the family" + "\n"
+                + "Father: " + father.getName() + " " + father.getSurname() + "\n"
                 + "Mother: " + mother.getName() + " " + mother.getSurname() + "\n"
-                );
+                + "Children: ");
 
-        System.out.print("Children: ");
+        // System.out.print("Children: ");
         if(!childrenlist.isEmpty()){
             for (Human child : childrenlist) {
-                System.out.println(child.getName());
+                aboutFamily.append(child.getName()).append(" ");
             }
         }
         else{
-            System.out.println("No Child");
+            aboutFamily.append("No Child");
         }
+        aboutFamily.append("\n");
 
-        pet.ToString();
+        aboutFamily.append(pet.toString());
+        return aboutFamily.toString();
     }
 
     @Override
@@ -97,4 +100,5 @@ public class Family {
     public int hashCode() {
         return Objects.hash(mother, father, Arrays.hashCode(children), pet);
     }
+
 }
